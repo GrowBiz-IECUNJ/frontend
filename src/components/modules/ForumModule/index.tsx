@@ -12,6 +12,9 @@ import { Button } from "flowbite-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const LETTER_INTERVAL_IN_MILLISECONDS = 65;
+const KEYWORD_INTERVAL_IN_MILLISECONDS = 1500;
+
 export const ForumModule: React.FC = () => {
   const [forums, setForums] = useState<ForumDiscuss[]>([]);
   const [content, setContent] = useState<string | undefined>();
@@ -119,10 +122,74 @@ export const ForumModule: React.FC = () => {
       });
   }, [forums, loading]);
 
+  const [keywordIndex, setKeywordIndex] = useState<number>(-1);
+  const [currentKeyword, setCurrentKeyword] = useState<string>("pharmacy");
+
+  function sliceKeyword(len: number) {
+    setTimeout(() => {
+      setCurrentKeyword((prev) => prev.slice(0, prev.length - 1));
+      if (len > 1) {
+        sliceKeyword(len - 1);
+      }
+    }, LETTER_INTERVAL_IN_MILLISECONDS);
+  }
+
   return (
     <>
-      <div className="relative pt-56 pr-56 pl-56 flex flex-col md:flex-row justify-center items-center mb-10 min-h-[20vw] w-full">
+      <div className="relative flex flex-col md:flex-row justify-center items-center pr-32 pl-32 pt-32 w-full">
         {/* left */}
+        <div
+          className="flex flex-col my-auto relative mb-10 leading-none
+        text-center md:text-left 2xl:pl-[15vw]
+        md:w-[50%] md:max-w-[55%] w-[100%] h-[80vw] md:h-fit mx-auto md:mx-0 md:mr-auto md:px-0 px-[10vw] sm:px-[8vw]"
+        >
+          <h1 className="text-grey-dark lg:text-display-medium text-display-small font-bold mr-3 md:my-0 my-auto">
+            GrowBiz is <p className="inline"></p>
+          </h1>
+          <br />
+          <p className=" text-title-medium leading-normal">
+            Welcome to Our Forum
+            <br />
+            <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea atque
+            exercitationem mollitia blanditiis, eveniet harum voluptatibus
+            accusamus fuga fugiat voluptatem adipisci perspiciatis facere, nisi
+            commodi eaque provident, ab officiis ad incidunt quam voluptate
+            aliquid itaque. Nulla, distinctio qui nam ea voluptate illo odit
+            assumenda id architecto, nihil eum debitis maiores.
+          </p>
+          <br />
+          <br />
+          <Button
+            className=" bg-purple-light w-[50%] hover:text-purple-light hover:bg-purple-lightest md:mr-auto md:mx-0 mx-auto"
+            href="#about"
+          >
+            Yuk eksplor!
+          </Button>
+        </div>
+        {/* 
+        <Image
+          width={200}
+          height={150}
+          alt="call to action"
+          src="/assets/images/action-bubble.png"
+          className="absolute right-[15vw] bottom-[10vw] z-20 md:w-fit md:h-fit w-0 h-0"
+        /> */}
+
+        {/* <div className="bg-red-300 ml-auto relative"> */}
+        <Image
+          height={200}
+          width={200}
+          className="
+            absolute right-0 top-0 lg:mt-20 md:-mt-16 -mt-12 lg:w-[35vw] lg:h-[35vw]
+            ml-auto md:w-[40vw] md:h-[40vw] w-0 h-0 z-10 mr-32
+            "
+          src="/assets/images/forum.svg"
+          alt=""
+        />
+        {/* </div> */}
+      </div>
+      {/* <div className="relative flex flex-col md:flex-row justify-center items-center mb-10 min-h-[20vw] w-full">
         <ToastContainer />
         <div
           className="flex flex-col relative mb-10 leading-none
@@ -155,25 +222,17 @@ export const ForumModule: React.FC = () => {
           </Button>
         </div>
 
-        {/* <Image
-          width={200}
-          height={150}
-          alt="call to action"
-          src="/assets/images/action-bubble.png"
-          className="absolute right-[15vw] bottom-[10vw] z-20 md:w-fit md:h-fit w-0 h-0"
-        /> */}
-
         <Image
           height={200}
           width={220}
           className="
-            absolute right-0 top-20 lg:mr-10
-            ml-auto lg:w-[35vw] lg:h-[35vw] md:w-[40vw] md:h-[40vw] w-0 h-0 z-10
+            absolute right-0 top-20
+            ml-auto lg:w-[35vw] lg:h-[35vw] 
             "
           src="/assets/images/forum.svg"
           alt=""
         />
-      </div>
+      </div> */}
 
       <main className="relative w-full min-h-screen 2xl:px-[20vw] lg:py-32 md:py-20 py-24 lg:px-32 md:px-16 px-5">
         <form onSubmit={(e) => handleCreateForum(e)}>

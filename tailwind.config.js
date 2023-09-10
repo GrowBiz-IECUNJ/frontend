@@ -27,7 +27,7 @@ module.exports = {
           darkest: '#2B8BDA',
         },
         broken: '#F6F6F6',
-        grey: '#767676',
+        grey: { normal: '#767676', dark: "#36474f" },
         purple: {
           light: "#794682",
           lightest: "#e5dce7"
