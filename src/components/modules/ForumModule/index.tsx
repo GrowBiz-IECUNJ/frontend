@@ -138,6 +138,7 @@ export const ForumModule: React.FC = () => {
     <>
       <div className="relative flex flex-col md:flex-row justify-center items-center pr-32 pl-32 pt-32 w-full">
         {/* left */}
+        <ToastContainer />
         <div
           className="flex flex-col my-auto relative mb-10 leading-none
         text-center md:text-left 2xl:pl-[15vw]
