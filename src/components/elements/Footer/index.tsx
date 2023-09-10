@@ -11,7 +11,7 @@ export const FooTer: React.FC = () => {
           <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div className="flex flex-col justify-center">
               <div className="flex mx-auto w-fit">
-                <h1 className="self-center whitespace-nowrap ml-3 text-blue-darkest lg:text-headline-medium md:text-headline-medium text-title-large">
+                <h1 className="self-center whitespace-nowrap ml-3 text-purple-light lg:text-headline-medium md:text-headline-medium text-title-large">
                   GrowBiz
                 </h1>
               </div>

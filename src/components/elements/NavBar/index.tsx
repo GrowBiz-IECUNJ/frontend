@@ -16,7 +16,7 @@ export const NavBar: React.FC = () => {
         className="bg-white-broken fixed flex w-full justify-between px-[0.15rem] sm:px-5 py-3 z-50 shadow-md"
       >
         <Navbar.Brand href="/">
-          <h1 className="self-center whitespace-nowrap ml-3 text-blue-darkest lg:text-headline-medium md:text-headline-medium text-title-large">
+          <h1 className="self-center whitespace-nowrap ml-3 text-purple-light lg:text-headline-medium md:text-headline-medium text-title-large">
             GrowBiz
           </h1>
         </Navbar.Brand>

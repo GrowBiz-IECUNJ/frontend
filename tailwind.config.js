@@ -10,8 +10,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
         productSans: 'ProductSans',
@@ -29,6 +28,10 @@ module.exports = {
         },
         broken: '#F6F6F6',
         grey: '#767676',
+        purple: {
+          light: "#794682",
+          lightest: "#e5dce7"
+        }
       },
       fontSize: {
         'display-large': '57px',

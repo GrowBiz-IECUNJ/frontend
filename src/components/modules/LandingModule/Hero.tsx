@@ -97,15 +97,15 @@ export default function Hero() {
           </Button>
         </div>
 
-        <Image
+        {/* <Image
           width={200}
           height={150}
           alt="call to action"
           src="/assets/images/action-bubble.png"
           className="absolute right-[15vw] bottom-[10vw] z-20 md:w-fit md:h-fit w-0 h-0"
-        />
+        /> */}
 
-        <Image
+        {/* <Image
           height={320}
           width={320}
           className="
@@ -114,8 +114,32 @@ export default function Hero() {
             "
           src="/assets/images/hero-image.png"
           alt=""
-        />
+        /> */}
       </div>
+
+      <section className="bg-white dark:bg-gray-900">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 gap-8 lg:gap-16">
+          <div className="flex flex-col justify-center text-center">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+              We invest in the world’s potential
+            </h1>
+            <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+              Here at Flowbite we focus on markets where technology, innovation,
+              and capital can unlock long-term value and drive economic growth.
+            </p>
+          </div>
+          <div>
+            <iframe
+              className="mx-auto w-full lg:max-w-xl h-64 rounded-lg sm:h-96 shadow-xl"
+              src="https://www.youtube.com/embed/KaLxCiilHns"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
