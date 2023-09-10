@@ -591,13 +591,237 @@ export const ForumModule: React.FC = () => {
           </Button>
         </form>
 
-        <div className="grid lg:grid-cols-2 lg:gap-4 ">
+        <div className="grid gap-10 pt-10">
+          {/* ///////////////////////////////////// */}
           {forums &&
+            forums.map((forum) => (
+              <>
+                <div className="flex flex-row">
+                  <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div className="flex justify-end px-4 pt-4">
+                      <button
+                        id="dropdownButton"
+                        data-dropdown-toggle="dropdown"
+                        className="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+                        type="button"
+                      >
+                        <span className="sr-only">Open dropdown</span>
+                        <svg
+                          className="w-5 h-5"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 16 3"
+                        >
+                          <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                        </svg>
+                      </button>
+                      <div
+                        id="dropdown"
+                        className="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                      >
+                        <ul className="py-2" aria-labelledby="dropdownButton">
+                          <li>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            >
+                              Edit
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            >
+                              Export Data
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            >
+                              Delete
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center pb-10">
+                      <Image
+                        width={200}
+                        height={200}
+                        className="w-24 h-24 mb-3 rounded-full shadow-lg"
+                        src="/assets/images/forum.svg"
+                        alt={""}
+                      />
+                      <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                        Bonnie Green
+                      </h5>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        UMKM
+                      </span>
+                      <div className="flex mt-4 space-x-3 md:mt-6">
+                        <a
+                          href="#"
+                          className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-purple-lightest rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                          Add friend
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    key={forum.id}
+                    className="w-full text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+                  >
+                    <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+                      {forum.title}
+                    </h5>
+                    <p className="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
+                      {forum.content}
+                    </p>
+                    <p className="text-title-small pt-5">
+                      Created at {forum.created_at.substring(0, 10)}
+                    </p>
+                    <div className="flex w-full lg:justify-start justify-center">
+                      <p>{forum.likes_count}</p>
+                      <button
+                        onClick={() => handleLikeFeatureFunction(forum.id)}
+                        className={`flex items-center justify-end space-x-2 transition-all duration-300 ease-in-out`}
+                      >
+                        <span className="stroke-current flex justify-center items-center mr-2">
+                          <HeartIcon
+                            fill="none"
+                            stroke="primary"
+                            className="h-5 w-5"
+                          />
+                          {forum.total_likes}
+                        </span>
+                        Like
+                      </button>
+                    </div>
+                    <div className="flex w-full lg:justify-start justify-center">
+                      <Button
+                        className="bg-purple-light"
+                        //   disabled={!jwt}
+                        onClick={() => handleShowSection(forum.id)}
+                      >
+                        <span className="stroke-current">
+                          <ChatBubbleBottomCenterTextIcon
+                            fill="none"
+                            stroke="primary"
+                            className="h-5 w-5 mr-2"
+                          />
+                        </span>
+                        Reply
+                      </Button>
+                    </div>
+
+                    {forum.id === idForum && showSection ? (
+                      <>
+                        <form
+                          onSubmit={(e) =>
+                            handleReplyFeatureFunction(e, forum.id)
+                          }
+                        >
+                          <label
+                            htmlFor="message"
+                            className="block mt-5 mb-2 text-sm text-left font-medium text-gray-900 dark:text-white"
+                          >
+                            Your message
+                          </label>
+                          <textarea
+                            rows={4}
+                            className="block mb-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Leave a comment..."
+                            id="content"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            required
+                          ></textarea>
+                          <Button className="bg-purple-light" type="submit">
+                            Submit
+                          </Button>
+                          {/* <div>
+                          <textarea
+                            className="bg-blue-light"
+                            id="content"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            required
+                          ></textarea>
+                        </div>
+                        <button type="submit">Submit</button> */}
+                        </form>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    <h2 className=" text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                      All Replies
+                    </h2>
+                    {forum?.replies &&
+                      forum?.replies?.map((reply) => (
+                        <>
+                          <div className="flex flex-row">
+                            <div className="flex flex-col items-center pb-10">
+                              <Image
+                                width={200}
+                                height={200}
+                                className="w-24 h-24 mb-3 rounded-full shadow-lg"
+                                src="/assets/images/forum.svg"
+                                alt={""}
+                              />
+                              <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                                Bonnie Green
+                              </h5>
+                              <span className="text-sm text-gray-500 dark:text-gray-400">
+                                UMKM
+                              </span>
+                            </div>
+                            <div
+                              className="p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
+                              id="about"
+                              role="tabpanel"
+                              aria-labelledby="about-tab"
+                            >
+                              <p className="mb-3 text-left text-gray-500 dark:text-gray-400">
+                                {reply.content}
+                              </p>
+                              <p className="text-[10px] text-left">
+                                {new Date(
+                                  reply?.created_at || ""
+                                ).toLocaleDateString("en-US", {
+                                  month: "long",
+                                  day: "numeric",
+                                  year: "numeric",
+                                })}{" "}
+                                {new Date(
+                                  reply?.created_at || ""
+                                ).toLocaleTimeString("en-US", {
+                                  hour: "numeric",
+                                  minute: "numeric",
+                                  hour12: true,
+                                })}
+                              </p>
+                            </div>
+                          </div>
+                        </>
+                      ))}
+                  </div>
+                </div>
+              </>
+            ))}
+
+          {/* {forums &&
             forums.map((forum) => (
               <>
                 <div
                   key={forum.id}
-                  className="py-10 my-4 flex w-full mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center justify-center sm:space-y-0 sm:space-x-6"
+                  className="flex w-full mx-auto bg-white rounded-xl shadow-lg  "
                 >
                   <div className="text-center space-y-2 sm:text-left flex">
                     <div className="space-y-0.5 p-5">
@@ -692,7 +916,7 @@ export const ForumModule: React.FC = () => {
                   </div>
                 </div>
               </>
-            ))}
+            ))} */}
         </div>
       </main>
     </>
