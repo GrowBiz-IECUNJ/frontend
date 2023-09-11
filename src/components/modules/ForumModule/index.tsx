@@ -725,9 +725,9 @@ export const ForumModule: React.FC = () => {
                       <div className="flex mt-4 space-x-3 md:mt-6">
                         <a
                           href="#"
-                          className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-purple-lightest rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                          className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-purple-light hover:text-purple-lightest bg-purple-lightest rounded-lg hover:bg-purple-light focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
-                          Add friend
+                          Connect
                         </a>
                       </div>
                     </div>
@@ -765,7 +765,7 @@ export const ForumModule: React.FC = () => {
                     </div>
                     <div className="flex w-full lg:justify-start justify-center">
                       <Button
-                        className="bg-purple-light"
+                        className="bg-purple-light hover:bg-purple-lightest hover:text-purple-light"
                         //   disabled={!jwt}
                         onClick={() => handleShowSection(forum.id)}
                       >
