@@ -2,7 +2,8 @@ import {
   HomeIcon,
   ChatBubbleLeftRightIcon,
   WalletIcon,
-  AcademicCapIcon
+  AcademicCapIcon,
+  GlobeAltIcon
 } from '@heroicons/react/24/outline'
 
 export const routes = [
@@ -22,8 +23,13 @@ export const routes = [
     icon: ChatBubbleLeftRightIcon,
   },
   {
-    path: '/GrowBiz Empowered',
-    name: 'GrowBiz Empowered',
+    path: '/Courses',
+    name: 'Courses',
     icon: AcademicCapIcon,
+  },
+  {
+    path: '/Workshops',
+    name: 'Workshops',
+    icon: GlobeAltIcon,
   },
 ]
