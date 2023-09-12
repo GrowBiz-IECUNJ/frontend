@@ -3,7 +3,10 @@ import {
   ChatBubbleLeftRightIcon,
   WalletIcon,
   AcademicCapIcon,
-  GlobeAltIcon
+  GlobeAltIcon,
+  UserIcon,
+  TruckIcon,
+  
 } from '@heroicons/react/24/outline'
 
 export const routes = [
@@ -31,5 +34,20 @@ export const routes = [
     path: '/Workshops',
     name: 'Workshops',
     icon: GlobeAltIcon,
+  },
+  {
+    path: '/UMKMs',
+    name: 'UMKM',
+    icon: UserIcon,
+  },
+  {
+    path: '/Vendors',
+    name: 'Vendor',
+    icon: TruckIcon,
+  },
+  {
+    path: '/Products',
+    name: 'Products',
+    icon: TruckIcon,
   },
 ]
