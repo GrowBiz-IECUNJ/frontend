@@ -1,58 +1,70 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import axios from "axios";
-import { Product } from "../interface";
-import { Breadcrumb, Button } from "flowbite-react";
-import Image from "next/image";
+import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import axios from 'axios'
+import { Product } from '../interface'
+import { Breadcrumb, Button } from 'flowbite-react'
+import Image from 'next/image'
 // import { CartFooter } from '@elements'
-import { IAuthContext } from "src/components/contexts/AuthContext/interface";
-import { useAuthContext } from "src/components/contexts/AuthContext";
+import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
+import { useAuthContext } from 'src/components/contexts/AuthContext'
 
 export const ProductDetailModule: React.FC = () => {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [isZoomedIn, setIsZoomedIn] = useState<boolean>(true);
-  const { jwt, loading }: IAuthContext = useAuthContext();
+  const router = useRouter()
+  const { id } = router.query
 
-  const router = useRouter();
-  const { id } = router.query;
+  const [product, setProduct] = useState<Product | null>(null)
+  const [isZoomedIn, setIsZoomedIn] = useState<boolean>(true)
+  const { jwt, loading }: IAuthContext = useAuthContext()
 
-  // async function fetchProducts(id: string): Promise<Product> {
-  //   const res = await axios.get(
-  //     `http://localhost:8000/products/product/${id}/`
-  //   );
-  //   return res.data;
-  // }
+  async function fetchProducts(): Promise<Product> {
+    console.log(id, 'idnya')
+    const res = await axios.get(`http://localhost:8000/products/product/${id}/`)
+    return res.data
+  }
 
-  // // if (router.isReady && !product && !loading) {
-  // if (!product) {
-  //   fetchProducts(id as string)
-  //     .then((data) => {
-  //       setProduct(data);
-  //     })
-  //     .catch((err) => {
-  //       alert(err);
-  //       setProduct(null);
-  //     });
-  // }
+  // if (router.isReady && !product && !loading) {
+  if (router.isReady && !product) {
+    fetchProducts()
+      .then((data) => {
+        setProduct(data)
+      })
+      .catch((err) => {
+        alert(err)
 
+        setProduct(null)
+      })
+  }
+
+  // useEffect(() => {
+  //   if (id !== undefined) {
+  //     fetchProducts()
+  //       .then((data) => {
+  //         setProduct(data)
+  //       })
+  //       .catch((err) => {
+  //         alert(err)
+  //         setProduct(null)
+  //       })
+  //   }
+  // }, [id])
   return (
     <>
       <main className="relative w-full min-h-screen 2xl:px-[20vw] lg:py-32 md:py-28 py-24 lg:px-32 md:px-16 px-3 bg-slate-50">
         <Breadcrumb className="lg:mb-12 mb-8">
           <Breadcrumb.Item href="#">Katalog Product</Breadcrumb.Item>
-          <Breadcrumb.Item>{product?.name || "..."}</Breadcrumb.Item>
+          <Breadcrumb.Item>{product?.name || '...'}</Breadcrumb.Item>
         </Breadcrumb>
         <div className="md:flex md:flex-row lg:gap-x-12 md:gap-x-8">
           {/* Left Hand Side */}
           <div>
             <div className="w-[90vw] h-[90vw] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px]">
               <Image
-                src={product ? product.photo : ""}
+                src={product ? product.photo : ''}
                 width={350}
                 height={350}
                 alt="foto"
                 className={`${
-                  isZoomedIn ? `rounded-2xl object-cover w-full h-full` : ""
+                  isZoomedIn ? `rounded-2xl object-cover w-full h-full` : ''
                 }`}
               />
             </div>
@@ -61,7 +73,7 @@ export const ProductDetailModule: React.FC = () => {
                 <Button
                   onClick={(e) => setIsZoomedIn(false)}
                   outline
-                  color={"gray"}
+                  color={'gray'}
                   disabled={!isZoomedIn}
                 >
                   <Image
@@ -74,7 +86,7 @@ export const ProductDetailModule: React.FC = () => {
                 <Button
                   onClick={(e) => setIsZoomedIn(true)}
                   outline
-                  color={"gray"}
+                  color={'gray'}
                   disabled={isZoomedIn}
                 >
                   <Image
@@ -94,7 +106,7 @@ export const ProductDetailModule: React.FC = () => {
               {product?.name}
             </p>
             <h1 className="text-headline-medium md:text-display-medium">
-              Produk {product?.name || ""}
+              Produk {product?.name || ''}
             </h1>
             <p className="mb-8">
               <span className="text-title-large md:text-headline-small mr-[0.5rem]">
@@ -114,5 +126,5 @@ export const ProductDetailModule: React.FC = () => {
       </main>
       {/* <CartFooter router={router.isReady} /> */}
     </>
-  );
-};
+  )
+}

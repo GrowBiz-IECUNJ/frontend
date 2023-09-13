@@ -1,19 +1,19 @@
-import React from "react";
-import { Props } from "./interface";
-import Image from "next/image";
-import { Button } from "flowbite-react";
-import { ALink } from "@elements";
-import { IAuthContext } from "src/components/contexts/AuthContext/interface";
-import { useAuthContext } from "src/components/contexts/AuthContext";
-import { Product } from "../interface";
-import axios from "axios";
+import React, { useState } from 'react'
+import { Props } from './interface'
+import Image from 'next/image'
+import { Button } from 'flowbite-react'
+import { ALink } from '@elements'
+import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
+import { useAuthContext } from 'src/components/contexts/AuthContext'
+import { Product } from '../interface'
+import axios from 'axios'
 
 export const ProductCard: React.FC<Props> = ({
   product,
   className,
   handler,
 }) => {
-  const { jwt }: IAuthContext = useAuthContext();
+  const { jwt }: IAuthContext = useAuthContext()
 
   return (
     <>
@@ -38,6 +38,7 @@ export const ProductCard: React.FC<Props> = ({
         </div>
         <div className="flex justify-center gap-x-6 px-6 pb-6">
           <ALink
+            className="text-purple-light"
             uppercase={false}
             href={`http://localhost:3000/Products/${product.id}`}
           >
@@ -47,10 +48,10 @@ export const ProductCard: React.FC<Props> = ({
             className="bg-indigo-500"
             disabled={!jwt || product.stock == 0}
           >
-            {jwt ? "Add to Cart" : "Login dulu!"}
+            {jwt ? 'Add to Cart' : 'Login dulu!'}
           </Button>
         </div>
       </div>
     </>
-  );
-};
+  )
+}

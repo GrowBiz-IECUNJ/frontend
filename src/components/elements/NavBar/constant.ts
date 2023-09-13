@@ -6,6 +6,7 @@ import {
   GlobeAltIcon,
   UserIcon,
   TruckIcon,
+  IdentificationIcon
   
 } from '@heroicons/react/24/outline'
 
@@ -36,18 +37,23 @@ export const routes = [
     icon: GlobeAltIcon,
   },
   {
-    path: '/UMKMs',
+    path: '/UMKM',
     name: 'UMKM',
     icon: UserIcon,
   },
   {
-    path: '/Vendors',
-    name: 'Vendor',
+    path: '/Wallet',
+    name: 'Wallet',
     icon: TruckIcon,
   },
   {
     path: '/Products',
     name: 'Products',
     icon: TruckIcon,
+  },
+  {
+    path: '/Vendor',
+    name: 'Vendor',
+    icon: IdentificationIcon,
   },
 ]

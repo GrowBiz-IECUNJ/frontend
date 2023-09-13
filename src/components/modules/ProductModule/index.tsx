@@ -1,43 +1,43 @@
-import axios from "axios";
-import { Button, Spinner, TextInput } from "flowbite-react";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { Product } from "./interface";
-import { ProductCard } from "./module-elements/ProductCard";
-import Image from "next/image";
-import { IAuthContext } from "src/components/contexts/AuthContext/interface";
-import { useAuthContext } from "src/components/contexts/AuthContext";
+import axios from 'axios'
+import { Button, Spinner, TextInput } from 'flowbite-react'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
+import { Product } from './interface'
+import { ProductCard } from './module-elements/ProductCard'
+import Image from 'next/image'
+import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
+import { useAuthContext } from 'src/components/contexts/AuthContext'
 // import { CartFooter } from '@elements'
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const ProductModule: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined);
-  const [products, setProducts] = useState<Product[] | null>();
-  const { loading }: IAuthContext = useAuthContext();
+  const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined)
+  const [products, setProducts] = useState<Product[] | null>()
+  const { loading }: IAuthContext = useAuthContext()
 
-  const router = useRouter();
+  const router = useRouter()
 
   function fetchProducts(): Promise<any> {
     return axios
-      .get("http://localhost:8000/products/product")
+      .get('http://localhost:8000/products/product')
       .then((res) => res.data)
       .catch((err) => {
-        throw new Error(err);
-      });
+        throw new Error(err)
+      })
   }
 
   if (router.isReady && !products && !loading) {
     fetchProducts()
       .then((data) => setProducts(data))
-      .catch((err) => setProducts([]));
+      .catch((err) => setProducts([]))
   }
 
   return (
     <>
       <main className="relative w-full min-h-screen 2xl:px-[20vw] lg:py-20 md:py-20 py-24 lg:px-32 md:px-16 px-3 text-sm bg-slate-50">
         <ToastContainer />
-        <h1 className="py-12 text-display-medium text-blue-darkest text-center">
+        <h1 className="py-12 text-display-medium text-purple-light text-center">
           Katalog Product
         </h1>
         <div className="flex py-6 w-full justify-around gap-x-2">
@@ -49,7 +49,7 @@ export const ProductModule: React.FC = () => {
             value={searchQuery}
             className="w-full"
           />
-          <Button>
+          <Button className="bg-purple-light">
             <Image
               src="/assets/images/icons/search.svg"
               width={24}
@@ -70,5 +70,5 @@ export const ProductModule: React.FC = () => {
       </main>
       {/* <CartFooter router={router.isReady} /> */}
     </>
-  );
-};
+  )
+}
