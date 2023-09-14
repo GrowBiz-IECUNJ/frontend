@@ -1,76 +1,76 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import "./interface";
-import { useAuthContext } from "src/components/contexts/AuthContext";
-import { IAuthContext } from "src/components/contexts/AuthContext/interface";
-import { Button } from "flowbite-react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Course, Lesson } from "./interface";
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import './interface'
+import { useAuthContext } from 'src/components/contexts/AuthContext'
+import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
+import { Button } from 'flowbite-react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Course, Lesson } from './interface'
 
 export const CoursesModule: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const { jwt, user, loading }: IAuthContext = useAuthContext();
-  const [typeCourse, setTypeCourse] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<Course[]>([])
+  const { jwt, user, loading }: IAuthContext = useAuthContext()
+  const [typeCourse, setTypeCourse] = useState<Course[]>([])
 
-  const [course, setCourse] = useState<Course>();
-  const [active, setActive] = useState(false);
+  const [course, setCourse] = useState<Course>()
+  const [active, setActive] = useState(false)
 
-  const [lessons, setLessons] = useState<Lesson[]>([]);
-  const [lesson, setLesson] = useState<Lesson>();
+  const [lessons, setLessons] = useState<Lesson[]>([])
+  const [lesson, setLesson] = useState<Lesson>()
 
-  const [leson, setLeson] = useState<Lesson>();
+  const [leson, setLeson] = useState<Lesson>()
   const courseState = async (id: number) => {
     await axios
       .get(`http://localhost:8000/courses/courses/${id}/`)
       .then((response) => {
-        setCourse(response.data);
-        setActive(!active);
+        setCourse(response.data)
+        setActive(!active)
       })
       .catch((error) => {
-        console.error(error);
-      });
-  };
+        console.error(error)
+      })
+  }
 
   const lessonState = async (id: number) => {
     await axios
       .get(`http://localhost:8000/courses/lessons/${id}/`)
       .then((response) => {
-        setLeson(response.data);
+        setLeson(response.data)
         // setActive(!active);
       })
       .catch((error) => {
-        console.error(error);
-      });
-  };
+        console.error(error)
+      })
+  }
 
   // sisa detail dari course aja
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/courses/courses/")
+      .get('http://localhost:8000/courses/courses/')
       .then((response) => {
-        console.log("risaaa");
-        console.log(response.data);
-        setCourses(response.data);
-        setTypeCourse(response.data);
+        console.log('risaaa')
+        console.log(response.data)
+        setCourses(response.data)
+        setTypeCourse(response.data)
       })
       .catch((error) => {
-        console.error(error);
-      });
+        console.error(error)
+      })
 
     axios
-      .get("http://localhost:8000/courses/lessons/")
+      .get('http://localhost:8000/courses/lessons/')
       .then((response) => {
-        console.log("risaaa");
-        console.log(response.data);
-        setLessons(response.data);
+        console.log('risaaa')
+        console.log(response.data)
+        setLessons(response.data)
       })
       .catch((error) => {
-        console.error(error);
-      });
-  }, [courses, loading]);
+        console.error(error)
+      })
+  }, [courses, loading])
 
   return (
     <>
@@ -272,95 +272,17 @@ export const CoursesModule: React.FC = () => {
             <>
               <div
                 onPlay={() => {
-                  lessonState(item.id);
+                  lessonState(item.id)
                 }}
                 key={item.id}
                 className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
               >
                 <h1>{leson?.title}</h1>
                 <h1>{leson?.creator}</h1>
-
-                {/* <a href="#">
-                  <Image
-                    width={200}
-                    height={200}
-                    className="p-8 rounded-t-lg"
-                    src={item.photo}
-                    alt="product image"
-                  />
-                </a>
-                <div className="px-5 pb-5">
-                  <a href="#">
-                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                      {item.title}
-                    </h5>
-                  </a>
-                  <div className="flex items-center mt-2.5 mb-5">
-                    <svg
-                      className="w-4 h-4 text-yellow-300 mr-1"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                    </svg>
-                    <svg
-                      className="w-4 h-4 text-yellow-300 mr-1"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                    </svg>
-                    <svg
-                      className="w-4 h-4 text-yellow-300 mr-1"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                    </svg>
-                    <svg
-                      className="w-4 h-4 text-yellow-300 mr-1"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                    </svg>
-                    <svg
-                      className="w-4 h-4 text-gray-200 dark:text-gray-600"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                    </svg>
-                    <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                      5.0
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a
-                      href="#"
-                      className="text-white bg-purple-light hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                      Add to cart
-                    </a>
-                  </div>
-                </div> */}
               </div>
             </>
           ))}
       </div>
     </>
-  );
-};
+  )
+}
