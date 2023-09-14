@@ -37,44 +37,55 @@ export const UMKMModule: React.FC = () => {
   }
 
   const UMKMProfileSubmit = async () => {
-    await axios
-      .post(
-        `http://localhost:8000/umkm/profile/`,
-        {
-          store_name: name,
-          store_contact: storeContact,
-          nomor_induk_berusaha: NIB,
-          kode_BLI: BLI,
-          beginning_capital: modalAwal,
-          store_channel: storeChannel,
-          store_channel_photo: storeChannelPhoto,
-          store_milestone: milestone,
-          business_type: businessType,
-          challenges: challenges,
-        },
-        config
-        // config
-      )
-      .then((response) => {
-        // const updatedForums = (vendors || []).map((vendor) => {
-        //   if (vendor.id === id) {
-        //     return {
-        //       ...vendor,
-        //       // replies: [...vendor.replies, response.data.content],
-        //     }
-        //   } else {
-        //     return vendor
-        //   }
-        // })
-        // setForums(updatedForums)
-        // setContent('')
-        // setShowSection(!showSection)
-        toast.success('Success post data')
-        // console.log(response.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    if (
+      name == '' ||
+      storeContact == '' ||
+      NIB == '' ||
+      BLI == '' ||
+      modalAwal == '' ||
+      storeChannel == '' ||
+      milestone == '' ||
+      businessType == '' ||
+      challenges == ''
+    ) {
+      toast.error('Tidak boleh ada data kosong!')
+    } else {
+      await axios
+        .post(
+          `http://localhost:8000/umkm/profile/`,
+          {
+            store_name: name,
+            store_contact: storeContact,
+            nomor_induk_berusaha: NIB,
+            kode_BLI: BLI,
+            beginning_capital: modalAwal,
+            store_channel: storeChannel,
+            store_channel_photo: storeChannelPhoto,
+            store_milestone: milestone,
+            business_type: businessType,
+            challenges: challenges,
+          },
+          config
+          // config
+        )
+        .then((response) => {
+          setName('')
+          setStoreContact('')
+          setNIB('')
+          setBLI('')
+          setModalAwal('')
+          setStoreChannel('')
+          setStoreChannelPhoto('')
+          setMilestone('')
+          setBusinessType('')
+          setChallenges('')
+          toast.success('Success post data')
+          // console.log(response.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 
   useEffect(() => {
