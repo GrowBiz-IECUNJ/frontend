@@ -7,6 +7,7 @@ import Image from 'next/image'
 // import { CartFooter } from '@elements'
 import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
 import { useAuthContext } from 'src/components/contexts/AuthContext'
+import { ToastContainer, toast } from 'react-toastify'
 
 export const ProductDetailModule: React.FC = () => {
   const router = useRouter()
@@ -16,7 +17,7 @@ export const ProductDetailModule: React.FC = () => {
   const [isZoomedIn, setIsZoomedIn] = useState<boolean>(true)
   const { jwt, loading }: IAuthContext = useAuthContext()
 
-  async function fetchProducts(): Promise<Product> {
+  async function fetchProducts(): Promise<Product[]> {
     console.log(id, 'idnya')
     const res = await axios.get(`http://localhost:8000/products/product/${id}/`)
     return res.data
@@ -26,7 +27,10 @@ export const ProductDetailModule: React.FC = () => {
   if (router.isReady && !product) {
     fetchProducts()
       .then((data) => {
-        setProduct(data)
+        toast.success('bersaskajskaj')
+        console.log('berhashill')
+        console.log(data[0].description)
+        setProduct(data[0])
       })
       .catch((err) => {
         alert(err)
