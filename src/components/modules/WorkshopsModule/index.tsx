@@ -27,17 +27,20 @@ export const WorkshopsModule: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col bg-blue-light relative1 justify-center items-center w-full h-full">
+      <div className="flex flex-col bg-blue-light relative justify-center items-center w-full h-full">
         <div className=" w-10/12 lg:pt-10 md:pt-28 pt-24">
           <ToastContainer />
 
           <div className="flex lg:flex-row flex-col justify-center items-center">
-            <div className="flex flex-col justify-center items-center">
-              <h1 className="text-grey-dark text-center lg:text-left md:mt-20 lg:text-display-medium text-display-small font-bold mr-3 md:my-0 my-auto">
-                GrowBiz Workshops
+            <div className="flex flex-col">
+              <h1 className="text-grey-dark lg:text-display-medium text-display-small font-bold mr-3 md:my-0 my-auto">
+                GrowBiz is <p className="inline"></p>
               </h1>
               <br />
-              <p className=" text-title-medium text-center leading-normal w-10/12">
+              <p className=" text-title-medium leading-normal">
+                Welcome to Our Forum
+                <br />
+                <br />
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea
                 atque exercitationem mollitia blanditiis, eveniet harum
                 voluptatibus accusamus fuga fugiat voluptatem adipisci
@@ -46,11 +49,19 @@ export const WorkshopsModule: React.FC = () => {
                 nam ea voluptate illo odit assumenda id architecto, nihil eum
                 debitis maiores.
               </p>
+              <br />
+              <br />
+              <Button
+                className=" bg-purple-light w-[50%] hover:text-purple-light hover:bg-purple-lightest md:mr-auto md:mx-0 mx-auto"
+                href="#about"
+              >
+                Yuk eksplor!
+              </Button>
             </div>
             <Image
               width={350}
               height={350}
-              className="rounded-t-lg relative drop-shadow-md w-[60%] lg:w-[40%] mx-auto lg:p-12 p-5 md:mt-20 rounded-2xl"
+              className="rounded-t-lg relative drop-shadow-md w-[60%] lg:w-[48%] mx-auto lg:p-12 p-5 md:mt-20 rounded-2xl"
               src="/assets/images/workshop.svg"
               alt="workshop"
             />
