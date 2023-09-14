@@ -12,3 +12,10 @@ export interface WorkshopInterface {
   speaker_name: string,
   speaker_description: string
 }
+
+export interface Vendor {
+  id: number
+  name: string
+  phone_number: string
+  product_name: string
+}
