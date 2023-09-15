@@ -17,7 +17,7 @@ export const routes = [
     icon: HomeIcon,
   },
   {
-    path: '/Find Investor',
+    path: '/Investor',
     name: 'Find Investor',
     icon: WalletIcon,
   },
