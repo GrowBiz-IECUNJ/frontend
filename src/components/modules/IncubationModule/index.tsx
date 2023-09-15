@@ -2,8 +2,8 @@ import axios from 'axios'
 import { Button, Spinner, TextInput } from 'flowbite-react'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { Inevstor } from './interface'
-import { InvestorCard } from './module-elements/InvestorCard'
+import { Incubation } from './interface'
+import { IncubationCard } from './module-elements/InvestorCard'
 import Image from 'next/image'
 import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
 import { useAuthContext } from 'src/components/contexts/AuthContext'
@@ -11,9 +11,9 @@ import { useAuthContext } from 'src/components/contexts/AuthContext'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export const InvestorModule: React.FC = () => {
+export const IncubationModule: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined)
-  const [investors, setInvestors] = useState<Inevstor[] | null>()
+  const [incubations, setIncubations] = useState<Incubation[] | null>()
   const { loading }: IAuthContext = useAuthContext()
 
   const router = useRouter()
@@ -24,12 +24,12 @@ export const InvestorModule: React.FC = () => {
       .then((response) => {
         console.log('risaaa')
         console.log(response.data)
-        setInvestors(response.data)
+        setIncubations(response.data)
       })
       .catch((error) => {
         console.error(error)
       })
-  })
+  }, [incubations])
 
   return (
     <>
@@ -57,11 +57,11 @@ export const InvestorModule: React.FC = () => {
           </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-1 gap-y-8">
-          {investors ? (
-            investors?.map((investor: Inevstor, key: number) => (
-              <InvestorCard
+          {incubations ? (
+            incubations?.map((incubation: Incubation, key: number) => (
+              <IncubationCard
                 key={key}
-                investor={investor}
+                incu={incubation}
                 handler={toast.error}
               />
             ))
