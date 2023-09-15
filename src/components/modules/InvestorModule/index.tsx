@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Button, Spinner, TextInput } from 'flowbite-react'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Inevstor } from './interface'
 import { InvestorCard } from './module-elements/InvestorCard'
 import Image from 'next/image'
@@ -18,21 +18,18 @@ export const InvestorModule: React.FC = () => {
 
   const router = useRouter()
 
-  function fetchInvestors(): Promise<any> {
-    return axios
+  useEffect(() => {
+    axios
       .get('http://localhost:8000/incubations/incubation/')
-      .then((res) => res.data)
-      .catch((err) => {
-        throw new Error(err)
+      .then((response) => {
+        console.log('risaaa')
+        console.log(response.data)
+        setInvestors(response.data)
       })
-  }
-
-  // if (router.isReady && !products && !loading) {
-  if (router.isReady) {
-    fetchInvestors()
-      .then((data) => setInvestors(data))
-      .catch((err) => setInvestors([]))
-  }
+      .catch((error) => {
+        console.error(error)
+      })
+  })
 
   return (
     <>
