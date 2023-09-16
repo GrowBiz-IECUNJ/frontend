@@ -63,7 +63,7 @@ export const ForumModule: React.FC = () => {
 
     await axios
       .post(
-        `http://localhost:8000/forum/replies/${id}/create/`,
+        `https://growbiz-api.fly.dev/forum/replies/${id}/create/`,
         {
           //   author: !loading && user ? user.id : null,
           author: 1,
@@ -93,8 +93,8 @@ export const ForumModule: React.FC = () => {
 
   const handleLikeFeatureFunction = async (id: any) => {
     await axios
-      //   .post(`http://localhost:8000/forum/forums/${id}/like/`, null, config)
-      .post(`http://localhost:8000/forum/forums/${id}/like/`, null)
+      //   .post(`https://growbiz-api.fly.dev/forum/forums/${id}/like/`, null, config)
+      .post(`https://growbiz-api.fly.dev/forum/forums/${id}/like/`, null)
       .then((response) => {
         const updatedForums = forums?.map((forum) => {
           if (forum.id === id) {
@@ -111,7 +111,7 @@ export const ForumModule: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/forum/forums')
+      .get('https://growbiz-api.fly.dev/forum/forums')
       .then((response) => {
         console.log('risaaa')
         console.log(response.data)
@@ -145,18 +145,12 @@ export const ForumModule: React.FC = () => {
               <h1 className="text-grey-dark lg:text-display-medium text-display-small font-bold mr-3 md:my-0 my-auto">
                 GrowBiz is <p className="inline"></p>
               </h1>
-              <br />
-              <p className=" text-title-medium leading-normal">
-                Welcome to Our Forum
-                <br />
-                <br />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea
-                atque exercitationem mollitia blanditiis, eveniet harum
-                voluptatibus accusamus fuga fugiat voluptatem adipisci
-                perspiciatis facere, nisi commodi eaque provident, ab officiis
-                ad incidunt quam voluptate aliquid itaque. Nulla, distinctio qui
-                nam ea voluptate illo odit assumenda id architecto, nihil eum
-                debitis maiores.
+
+              <p className="text-left lg:text-xl md:text-xl text-lg mt-5">
+                Fitur "Forum" di platform GrowBiz adalah ruang diskusi daring
+                yang dirancang untuk memfasilitasi interaksi dan berbagi
+                pengetahuan antara pemilik UMKM, karyawan, ahli industri, dan
+                berbagai pemangku kepentingan lainnya.
               </p>
               <br />
               <br />
@@ -164,7 +158,7 @@ export const ForumModule: React.FC = () => {
                 className=" bg-purple-light w-[50%] hover:text-purple-light hover:bg-purple-lightest md:mr-auto md:mx-0 mx-auto"
                 href="#about"
               >
-                Yuk eksplor!
+                Yuk diskusi!
               </Button>
             </div>
             <Image
@@ -370,7 +364,7 @@ export const ForumModule: React.FC = () => {
               </div>
               <div className="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
                 <h5 className="text-base font-productSansBold title-medium text-purple-light">
-                  Title
+                  Judul Postingan
                 </h5>
                 <textarea
                   className="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
@@ -573,7 +567,7 @@ export const ForumModule: React.FC = () => {
               </div>
               <div className="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
                 <h5 className="text-base font-productSansBold text-purple-light title-medium">
-                  Content
+                  Konten Postingan
                 </h5>
                 <textarea
                   className="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
@@ -660,7 +654,7 @@ export const ForumModule: React.FC = () => {
                             width={200}
                             height={200}
                             className="w-24 h-24 mb-3 rounded-full shadow-lg"
-                            src="/assets/images/forum.svg"
+                            src="/assets/images/forum1.svg"
                             alt={''}
                           />
                           <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
@@ -672,6 +666,7 @@ export const ForumModule: React.FC = () => {
                           <div className="flex mt-4 space-x-3 md:mt-6">
                             <a
                               href="#"
+                              onClick={() => toast.success('Berhasil Connect')}
                               className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-purple-light hover:text-purple-lightest bg-purple-lightest rounded-lg hover:bg-purple-light focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
                               Connect
@@ -779,7 +774,7 @@ export const ForumModule: React.FC = () => {
                                     width={200}
                                     height={200}
                                     className="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                    src="/assets/images/forum.svg"
+                                    src="/assets/images/forum1.svg"
                                     alt={''}
                                   />
                                   <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">

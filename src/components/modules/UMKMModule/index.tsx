@@ -18,7 +18,7 @@ export const UMKMModule: React.FC = () => {
   const [data, setData] = useState<IRegisterData>(EMPTY_REGISTER_DATA)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const router = useRouter()
-
+  const { jwt, user, loading }: IAuthContext = useAuthContext()
   const [name, setName] = useState('')
   const [storeContact, setStoreContact] = useState('')
   const [NIB, setNIB] = useState('')
@@ -52,7 +52,7 @@ export const UMKMModule: React.FC = () => {
     } else {
       await axios
         .post(
-          `http://localhost:8000/umkm/profile/`,
+          `https://growbiz-api.fly.dev/umkm/profile/`,
           {
             store_name: name,
             store_contact: storeContact,
@@ -90,7 +90,7 @@ export const UMKMModule: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/umkm/profile/')
+      .get('https://growbiz-api.fly.dev/umkm/profile/')
       .then((response) => {
         console.log('risaaa')
         // console.log(response.data)
@@ -111,7 +111,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="name"
             type="name"
-            placeholder="Toko Berkah"
+            placeholder="Contoh: Toko Berkah"
             onChange={(e) => setName(e.target.value)}
             value={name}
             required={true}
@@ -122,7 +122,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="contact"
             type="text"
-            placeholder="081281621122"
+            placeholder="Contoh: 081281621122 (TIDAK BOLEH LEBIH DARI 12 ANGKA)"
             onChange={(e) => setStoreContact(e.target.value)}
             value={storeContact}
             required={true}
@@ -133,7 +133,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="NIB"
             type="text"
-            placeholder="2102810281"
+            placeholder="Contoh: 2102810281"
             onChange={(e) => setNIB(e.target.value)}
             value={NIB}
             required={true}
@@ -144,7 +144,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="BLI"
             type="text"
-            placeholder="2102810281"
+            placeholder="Contoh: 2102810281"
             onChange={(e) => setBLI(e.target.value)}
             value={BLI}
             required={true}
@@ -155,7 +155,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="Modal"
             type="text"
-            placeholder="10000000"
+            placeholder="Contoh: 10000000"
             onChange={(e) => setModalAwal(e.target.value)}
             value={modalAwal}
             required={true}
@@ -166,7 +166,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="channel"
             type="text"
-            placeholder="Tokopedia"
+            placeholder="Contoh: Tokopedia"
             onChange={(e) => setStoreChannel(e.target.value)}
             value={storeChannel}
             required={true}
@@ -177,7 +177,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="milestone"
             type="text"
-            placeholder="Juara 1"
+            placeholder="Contoh: Juara 1"
             onChange={(e) => setMilestone(e.target.value)}
             value={milestone}
             required={true}
@@ -188,7 +188,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="milestone"
             type="text"
-            placeholder="Makanan"
+            placeholder="Contoh: Makanan"
             onChange={(e) => setBusinessType(e.target.value)}
             value={businessType}
             required={true}
@@ -199,7 +199,7 @@ export const UMKMModule: React.FC = () => {
           <TextInput
             id="challenges"
             type="text"
-            placeholder="Kompetitor"
+            placeholder="Contoh: Kompetitor"
             onChange={(e) => setChallenges(e.target.value)}
             value={challenges}
             required={true}
@@ -208,6 +208,7 @@ export const UMKMModule: React.FC = () => {
 
           <div className="flex flex-row gap-x-8 justify-end">
             <Button
+              disabled={!jwt}
               onClick={() => UMKMProfileSubmit()}
               className=" bg-indigo-500"
             >

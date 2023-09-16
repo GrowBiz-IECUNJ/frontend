@@ -27,7 +27,7 @@ export const VendorModule: React.FC = () => {
     } else {
       await axios
         .post(
-          'http://localhost:8000/vendors/vendor/',
+          'https://growbiz-api.fly.dev/vendors/vendor/',
           {
             name: name,
             phone_number: phoneNumber,
@@ -36,33 +36,18 @@ export const VendorModule: React.FC = () => {
           // config
         )
         .then((response) => {
-          // const updatedForums = (vendors || []).map((vendor) => {
-          //   if (vendor.id === id) {
-          //     return {
-          //       ...vendor,
-          //       // replies: [...vendor.replies, response.data.content],
-          //     }
-          //   } else {
-          //     return vendor
-          //   }
-          // })
-          // setForums(updatedForums)
-          // setContent('')
-          // setShowSection(!showSection)
           console.log(response.data)
           setProduct('')
           setName('')
           setPhoneNumber('')
           toast.success('Success post data')
-
-          // console.log(response.data)
         })
     }
   }
 
   const handleDeleteVendor = async (id: Number) => {
     await axios
-      .delete(`http://localhost:8000/vendors/vendor/${id}/delete/`)
+      .delete(`https://growbiz-api.fly.dev/vendors/vendor/${id}/delete/`)
       .then((response) => {
         toast.success('Success delete data')
       })
@@ -75,11 +60,13 @@ export const VendorModule: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/vendors/vendor/')
+      .get('https://growbiz-api.fly.dev/vendors/vendor/')
       .then((response) => {
         // console.log('risaaa')
+
         console.log(response.data)
         setVendors(response.data)
+        console.log(jwt)
       })
       .catch((error) => {
         console.error(error)
@@ -98,9 +85,17 @@ export const VendorModule: React.FC = () => {
               <h1 className="py-6 text-3xl  text-display-medium text-purple-light text-center">
                 Vendor
               </h1>
-              <p className="text-center px-6">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Tenetur, assumenda?
+              <p className="text-center lg:text-xl md:text-xl px-20 text-lg">
+                Membantu UMKM dalam{' '}
+                <span className="font-productSansBold text-purple-terong">
+                  mengembangkan bisnis mereka
+                </span>{' '}
+                dan{' '}
+                <span className="font-productSansBold text-purple-terong">
+                  mencapai berbagai tujuan
+                </span>{' '}
+                , seperti meningkatkan penjualan, memperluas jangkauan pasar,
+                dan meningkatkan efisiensi operasional.
               </p>
               <Image
                 width={350}
@@ -111,17 +106,17 @@ export const VendorModule: React.FC = () => {
               />
             </div>
             <DialogueCard>
-              <h2>Nama</h2>
+              <h2>Nama Toko Vendor</h2>
               <TextInput
                 type="text"
-                placeholder="Contoh: John Doe"
+                placeholder="Contoh: Toko Bersinar"
                 required={true}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
               <br />
 
-              <h2>Phone Number</h2>
+              <h2>Nomor Telepon</h2>
               <TextInput
                 type="text"
                 placeholder="Contoh: 08128167165"
@@ -131,10 +126,10 @@ export const VendorModule: React.FC = () => {
               />
               <br />
 
-              <h2>Products</h2>
+              <h2>Produk yang dibeli</h2>
               <TextInput
                 type="text"
-                placeholder="Contoh: Margarine"
+                placeholder="Contoh: Benang"
                 required={true}
                 value={product}
                 onChange={(e) => setProduct(e.target.value)}
@@ -143,6 +138,7 @@ export const VendorModule: React.FC = () => {
 
               <Button
                 className="bg-indigo-500"
+                disabled={!jwt}
                 onClick={() => handleCreateVendor()}
                 // onClick={(e) => router.push('/auth/login')}
               >
@@ -156,9 +152,13 @@ export const VendorModule: React.FC = () => {
           <h1 className="pt-14 text-3xl text-display-medium text-purple-light text-center">
             Daftar Vendor
           </h1>
-          <p className="text-center px-6 mt-5">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur,
-            assumenda?
+          <p className="text-center lg:text-xl md:text-xl lg:px-32 px-10 text-lg mt-5">
+            Dengan adanya fitur "Vendor", Aplikasi GrowBiz memberikan kesempatan
+            kepada UMKM dan penyedia layanan lainnya untuk mengembangkan bisnis
+            mereka secara online, mencapai lebih banyak pelanggan, dan
+            meningkatkan efisiensi operasional. Ini merupakan salah satu cara
+            untuk mendukung pertumbuhan ekonomi dan mencapai tujuan pembangunan
+            berkelanjutan (SDGs).
           </p>
 
           <div className="lg:flex lg:flex-row md:grid md:grid-cols-3 sm:grid sm:grid-cols-2 lg:p-10 justify-center mx-auto m-10 gap-5 lg:overflow-x-auto lg:w-10/12 md:w-10/12 w-full">
@@ -169,12 +169,21 @@ export const VendorModule: React.FC = () => {
                     {vendor.name}
                   </h5>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Phone Number: {vendor.phone_number}
+                    <span className="font-productSansBold text-purple-terong">
+                      {' '}
+                      Phone Number:
+                    </span>{' '}
+                    {vendor.phone_number}
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Products: {vendor.product_name}
+                    <span className="font-productSansBold text-purple-terong">
+                      {' '}
+                      Products:{' '}
+                    </span>{' '}
+                    {vendor.product_name}
                   </p>
                   <Button
+                    disabled={!jwt}
                     className="bg-indigo-500"
                     onClick={() => handleDeleteVendor(vendor.id)}
                     // onClick={(e) => router.push('/auth/login')}

@@ -22,25 +22,29 @@ export const InvestorDetailModule: React.FC = () => {
   const [incubation, setIncubation] = useState<Incubation | null>(null)
 
   const fetchPortfolio = async () => {
-    incubation?.portfolio.map((inv) =>
-      axios
-        .get(`http://localhost:8000/incubations/incubation/portfolio/${inv}/`)
-        .then((response) => {
-          // console.log('risaaa')
-          console.log(inv)
-          console.log(response.data[0])
-          setPortfolio(response.data[0])
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    )
+    if (router.isReady) {
+      incubation?.portfolio.map((inv) =>
+        axios
+          .get(
+            `https://growbiz-api.fly.dev/incubations/incubation/portfolio/${inv}/`
+          )
+          .then((response) => {
+            // console.log('risaaa')
+            console.log(inv)
+            console.log(response.data[0])
+            setPortfolio(response.data[0])
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      )
+    }
   }
 
   async function fetchIncubation(): Promise<Incubation[]> {
     console.log(id, 'idnya')
     const res = await axios.get(
-      `http://localhost:8000/incubations/incubation/${id}/`
+      `https://growbiz-api.fly.dev/incubations/incubation/${id}/`
     )
     return res.data
   }
@@ -64,7 +68,7 @@ export const InvestorDetailModule: React.FC = () => {
 
   // useEffect(() => {
   //   axios
-  //     .get('http://localhost:8000/vendors/vendor/')
+  //     .get('https://growbiz-api.fly.dev/vendors/vendor/')
   //     .then((response) => {
   //       // console.log('risaaa')
   //       console.log(response.data)

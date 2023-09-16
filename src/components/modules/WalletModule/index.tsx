@@ -20,6 +20,7 @@ export const WalletModule: React.FC = () => {
   const [jenisTransaksi, setJenisTransaksi] = useState('')
   const [tanggalTransaksi, setTanggalTransaksi] = useState('')
   const [deskripsi, setDeskripsi] = useState('')
+  const { jwt, user, loading }: IAuthContext = useAuthContext()
   const [chooseTypePengeluaran, setChooseTypePengeluaran] =
     useState<Boolean>(false)
   const [chooseTypePemasukan, setChooseTypePemasukan] = useState<Boolean>(false)
@@ -27,7 +28,7 @@ export const WalletModule: React.FC = () => {
 
   const handleDeleteWallet = async (id: Number) => {
     await axios
-      .delete(`http://localhost:8000/wallets/wallet/${id}/delete/`)
+      .delete(`https://growbiz-api.fly.dev/wallets/wallet/${id}/delete/`)
       .then((response) => {
         toast.success('Success delete data')
       })
@@ -47,7 +48,7 @@ export const WalletModule: React.FC = () => {
     } else {
       await axios
         .post(
-          'http://localhost:8000/wallets/wallet/',
+          'https://growbiz-api.fly.dev/wallets/wallet/',
           {
             amount_of_money: total,
             type: jenisTransaksi,
@@ -68,22 +69,9 @@ export const WalletModule: React.FC = () => {
     }
   }
 
-  const handleDeleteVendor = async (id: Number) => {
-    await axios
-      .delete(`http://localhost:8000/vendors/vendor/${id}/delete/`)
-      .then((response) => {
-        toast.success('Success delete data')
-      })
-      .catch((err) => {
-        toast.error('eror')
-
-        console.log('error')
-      })
-  }
-
   useEffect(() => {
     axios
-      .get('http://localhost:8000/wallets/wallet/')
+      .get('https://growbiz-api.fly.dev/wallets/wallet/')
       .then((response) => {
         console.log('risaaa')
         console.log(response.data)
@@ -106,9 +94,14 @@ export const WalletModule: React.FC = () => {
               <h1 className="py-6 text-3xl  text-display-medium text-purple-light text-center">
                 Wallet Transaksi
               </h1>
-              <p className="text-center px-6">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Tenetur, assumenda?
+              <p className="text-center lg:text-xl md:text-xl px-20 text-lg">
+                Dengan fitur wallet transaksi yang sesuai, UMKM dapat{' '}
+                <span className="font-productSansBold text-purple-terong">
+                  {' '}
+                  mengelola keuangan mereka dengan lebih efisien , meningkatkan
+                  transparansi, mengurangi risiko keuangan, dan memungkinkan
+                  pertumbuhan bisnis yang lebih baik.
+                </span>
               </p>
               <Image
                 width={350}
@@ -168,7 +161,7 @@ export const WalletModule: React.FC = () => {
               <h2 className="mt-2">Tanggal Transaksi</h2>
               <TextInput
                 type="text"
-                placeholder="Contoh: 2023-03-03"
+                placeholder="Contoh: tahun-bulan-tanggal"
                 required={true}
                 value={tanggalTransaksi}
                 onChange={(e) => setTanggalTransaksi(e.target.value)}
@@ -185,6 +178,7 @@ export const WalletModule: React.FC = () => {
               <br />
 
               <Button
+                disabled={!jwt}
                 className="bg-indigo-500"
                 onClick={() => handleCreateWallet()}
                 // onClick={(e) => router.push('/auth/login')}
@@ -199,9 +193,10 @@ export const WalletModule: React.FC = () => {
           <h1 className="pt-14 text-3xl text-display-medium text-purple-light text-center">
             Daftar Transaksi
           </h1>
-          <p className="text-center px-6 mt-5">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur,
-            assumenda?
+          <p className="text-center lg:text-xl md:text-xl lg:px-32 px-10 text-lg mt-5">
+            Wallet transaksi sering menyediakan laporan keuangan yang dapat
+            membantu UMKM dalam memahami kinerja keuangan mereka. Laporan ini
+            dapat digunakan untuk perencanaan bisnis dan analisis keuangan.
           </p>
 
           <div className="lg:flex lg:flex-row md:grid md:grid-cols-3 sm:grid sm:grid-cols-2 lg:p-10 justify-center mx-auto m-10 gap-5 lg:overflow-x-auto lg:w-10/12 md:w-10/12 w-full">
@@ -212,15 +207,25 @@ export const WalletModule: React.FC = () => {
                     {wallet.type}
                   </h5>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Jumlah: {wallet.amount_of_money}
+                    <span className="font-productSansBold text-purple-terong">
+                      Jumlah:{' '}
+                    </span>{' '}
+                    {wallet.amount_of_money}
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Tanggal transaksi: {wallet.date}
+                    <span className="font-productSansBold text-purple-terong">
+                      Tanggal transaksi:
+                    </span>{' '}
+                    {wallet.date}
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Deskripsi: {wallet.description}
+                    <span className="font-productSansBold text-purple-terong">
+                      Deskripsi:{' '}
+                    </span>
+                    {wallet.description}
                   </p>
                   <Button
+                    disabled={!jwt}
                     className="bg-indigo-500"
                     onClick={() => handleDeleteWallet(wallet.id)}
                     // onClick={(e) => router.push('/auth/login')}

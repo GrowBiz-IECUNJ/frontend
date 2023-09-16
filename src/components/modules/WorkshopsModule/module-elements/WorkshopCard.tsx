@@ -20,7 +20,7 @@ export const WorkshopCard: React.FC<Props> = ({
       <div
         className={`
         ${className}    
-        relative bg-white drop-shadow-md w-[250px] mx-auto rounded-2xl 
+        relative bg-white drop-shadow-md w-[350px] mx-auto rounded-2xl 
         transform hover:-translate-y-[0.5rem] hover:shadow-xl cursor-pointer
         `}
       >
@@ -29,26 +29,41 @@ export const WorkshopCard: React.FC<Props> = ({
           alt="foto"
           width={500}
           height={500}
-          className="object-cover w-[250px] h-[200px] rounded-t-2xl"
+          className="object-cover w-[350px] h-[200px] rounded-t-2xl"
         />
         <div className="flex flex-col gap-x-6 px-6 pt-6">
-          <h1 className="text-title-large">{workshop.description}</h1>
+          <h1 className="text-title-large">{workshop.title}</h1>
           <p>{workshop.description}</p>
-          <p className="mt-3 mb-6">Rp. {workshop.price}</p>
+          <p>
+            <span className="font-productSansBold text-purple-terong">
+              Places:
+            </span>{' '}
+            {workshop.places}
+          </p>
+          <p>
+            <span className="font-productSansBold text-purple-terong">
+              cp:{' '}
+            </span>
+            {workshop.contact_person}
+          </p>
+          <p>
+            <span className="font-productSansBold text-purple-terong">
+              Speaker name:{' '}
+            </span>
+            {workshop.speaker_name}
+          </p>
+          <p className="mt-3 mb-6">
+            <span className="font-productSansBold text-purple-terong">Rp.</span>{' '}
+            {workshop.price}
+          </p>
         </div>
         <div className="flex justify-center gap-x-6 px-6 pb-6">
-          {/* <ALink
-            className="text-purple-light"
-            uppercase={false}
-            href={`http://localhost:3000/workshops/${workshop.id}`}
-          >
-            View more
-          </ALink> */}
           <Button
             className="bg-indigo-500"
+            href={workshop.registration}
             // disabled={!jwt || workshop.stock == 0}
           >
-            {jwt ? 'Add to Cart' : 'Login dulu!'}
+            {jwt ? 'Join' : 'Login dulu!'}
           </Button>
         </div>
       </div>

@@ -51,23 +51,30 @@ export const IncubationCard: React.FC<Props> = ({
         />
         <div className="flex flex-col gap-x-6 px-6 pt-6">
           <h1 className="text-title-large">{incu.name}</h1>
-          <p>{incu.description}</p>
+          <p className="text-lg mb-3">{incu.description}</p>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+            <span className="font-productSansBold text-purple-terong">
+              Kategori Bisnis:{' '}
+            </span>
+            {incu.business_category}
+          </p>
+          <p className="font-normal text-gray-700 mt-3 mb-6 dark:text-gray-400">
+            <span className="font-productSansBold text-purple-terong">
+              Kriteria UMKM:{' '}
+            </span>
+            {incu.criteria}
+          </p>
+
           {/* <p className="mt-3 mb-6">Rp. {investor.price}</p> */}
         </div>
         <div className="flex justify-center gap-x-6 px-6 pb-6">
           <Button
-            className="text-purple-light"
+            className="text-purple-light bg-purple-light"
             // uppercase={false}
             // onClick={() => fetchInvestor()}
-            href={`http://localhost:3000/Incubation/${incu.id}`}
+            href={`https://www.antler.co/about`}
           >
             View more
-          </Button>
-          <Button
-            className="bg-indigo-500"
-            // disabled={!jwt || investor.stock == 0}
-          >
-            {jwt ? 'Add to Cart' : 'Login dulu!'}
           </Button>
         </div>
       </div>

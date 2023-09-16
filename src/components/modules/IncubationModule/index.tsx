@@ -7,7 +7,6 @@ import { IncubationCard } from './module-elements/InvestorCard'
 import Image from 'next/image'
 import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
 import { useAuthContext } from 'src/components/contexts/AuthContext'
-// import { CartFooter } from '@elements'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -18,18 +17,20 @@ export const IncubationModule: React.FC = () => {
 
   const router = useRouter()
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:8000/incubations/incubation/')
-      .then((response) => {
-        console.log('risaaa')
-        console.log(response.data)
-        setIncubations(response.data)
+  function fetchIncubations(): Promise<any> {
+    return axios
+      .get('https://growbiz-api.fly.dev/incubations/incubation/')
+      .then((res) => res.data)
+      .catch((err) => {
+        throw new Error(err)
       })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [incubations])
+  }
+
+  if (router.isReady && !incubations && !loading) {
+    fetchIncubations()
+      .then((data) => setIncubations(data))
+      .catch((err) => setIncubations([]))
+  }
 
   return (
     <>

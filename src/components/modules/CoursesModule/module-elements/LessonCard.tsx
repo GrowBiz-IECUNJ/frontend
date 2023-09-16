@@ -16,7 +16,7 @@ export const LessonCard: React.FC<Props> = ({ lesson, className, handler }) => {
       <div
         className={`
         ${className}    
-        relative bg-white drop-shadow-md w-[250px] mx-auto rounded-2xl 
+        relative bg-white drop-shadow-md w-[350px] mx-auto rounded-2xl 
         transform hover:-translate-y-[0.5rem] hover:shadow-xl cursor-pointer
         `}
       >
@@ -25,11 +25,47 @@ export const LessonCard: React.FC<Props> = ({ lesson, className, handler }) => {
           alt="foto"
           width={500}
           height={500}
-          className="object-cover w-[250px] h-[200px] rounded-t-2xl"
+          className="object-cover w-[350px] h-[200px] rounded-t-2xl"
         />
         <div className="flex flex-col gap-x-6 px-6 pt-6">
+          <h1 className="text-title-large">{lesson.title}</h1>
           <p>{lesson.description}</p>
-          <p className="mt-3 mb-6">Rp. {lesson.price}</p>
+          <p>
+            <span className="font-productSansBold text-purple-terong">
+              Harga:
+            </span>{' '}
+            {lesson.price}
+          </p>
+          <p>
+            <span className="font-productSansBold text-purple-terong">
+              Rating:{' '}
+            </span>
+            {lesson.rating}
+          </p>
+          <p>
+            <span className="font-productSansBold text-purple-terong">
+              Total pendaftar:{' '}
+            </span>
+            {lesson.total_mentee}
+          </p>
+          <p className="mt-3 mb-6">
+            <span className="font-productSansBold text-purple-terong">
+              Pengajar:
+            </span>{' '}
+            {lesson.creator}
+          </p>
+          <p className="mt-3 mb-6">
+            <span className="font-productSansBold text-purple-terong">
+              Kelas dimulai:
+            </span>{' '}
+            {lesson.class_start.toString()}
+          </p>
+          <p className="mt-3 mb-6">
+            <span className="font-productSansBold text-purple-terong">
+              Kelas berakhir:
+            </span>{' '}
+            {lesson.class_end.toString()}
+          </p>
         </div>
         <div className="flex justify-center gap-x-6 px-6 pb-6">
           {/* <ALink
@@ -41,9 +77,10 @@ export const LessonCard: React.FC<Props> = ({ lesson, className, handler }) => {
           </ALink> */}
           <Button
             className="bg-indigo-500"
+            href="https://web.whatsapp.com/"
             // disabled={!jwt || workshop.stock == 0}
           >
-            {jwt ? 'Add to Cart' : 'Login dulu!'}
+            {jwt ? 'Hubungi Contact Person' : 'Login dulu!'}
           </Button>
         </div>
       </div>

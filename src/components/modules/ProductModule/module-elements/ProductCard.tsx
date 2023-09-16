@@ -33,7 +33,10 @@ export const ProductCard: React.FC<Props> = ({
         />
         <div className="flex flex-col gap-x-6 px-6 pt-6">
           <h1 className="text-title-large">{product.name}</h1>
-          <p>{product.description}</p>
+          <p className="truncate">{product.description}</p>
+          <span className="font-bold text-purple-light">
+            stok {product?.stock}
+          </span>
           <p className="mt-3 mb-6">Rp. {product.price}</p>
         </div>
         <div className="flex justify-center gap-x-6 px-6 pb-6">
@@ -44,12 +47,6 @@ export const ProductCard: React.FC<Props> = ({
           >
             View more
           </ALink>
-          <Button
-            className="bg-indigo-500"
-            disabled={!jwt || product.stock == 0}
-          >
-            {jwt ? 'Add to Cart' : 'Login dulu!'}
-          </Button>
         </div>
       </div>
     </>

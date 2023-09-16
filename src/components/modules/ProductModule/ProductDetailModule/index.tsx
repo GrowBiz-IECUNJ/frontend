@@ -19,7 +19,9 @@ export const ProductDetailModule: React.FC = () => {
 
   async function fetchProducts(): Promise<Product[]> {
     console.log(id, 'idnya')
-    const res = await axios.get(`http://localhost:8000/products/product/${id}/`)
+    const res = await axios.get(
+      `https://growbiz-api.fly.dev/products/product/${id}/`
+    )
     return res.data
   }
 

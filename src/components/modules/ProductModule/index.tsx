@@ -7,7 +7,6 @@ import { ProductCard } from './module-elements/ProductCard'
 import Image from 'next/image'
 import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
 import { useAuthContext } from 'src/components/contexts/AuthContext'
-// import { CartFooter } from '@elements'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -20,7 +19,7 @@ export const ProductModule: React.FC = () => {
 
   function fetchProducts(): Promise<any> {
     return axios
-      .get('http://localhost:8000/products/product')
+      .get('https://growbiz-api.fly.dev/products/product')
       .then((res) => res.data)
       .catch((err) => {
         throw new Error(err)
@@ -38,13 +37,13 @@ export const ProductModule: React.FC = () => {
       <main className="relative w-full min-h-screen 2xl:px-[20vw] lg:py-20 md:py-20 py-24 lg:px-32 md:px-16 px-3 text-sm bg-slate-50">
         <ToastContainer />
         <h1 className="py-12 text-display-medium text-purple-light text-center">
-          Katalog Product
+          Katalog Produk
         </h1>
         <div className="flex py-6 w-full justify-around gap-x-2">
           <TextInput
             id="searchQuery"
             type="text"
-            placeholder="Contoh: snickers"
+            placeholder="Contoh: Spidol Permanen"
             onChange={(e) => setSearchQuery(e.target.value)}
             value={searchQuery}
             className="w-full"

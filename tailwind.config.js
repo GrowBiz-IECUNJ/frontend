@@ -30,7 +30,8 @@ module.exports = {
         grey: { normal: '#767676', dark: "#36474f" },
         purple: {
           light: "#794682",
-          lightest: "#e5dce7"
+          lightest: "#e5dce7",
+          terong: "#c224a1"
         }
       },
       fontSize: {
