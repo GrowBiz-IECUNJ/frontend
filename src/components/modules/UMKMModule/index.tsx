@@ -104,7 +104,9 @@ export const UMKMModule: React.FC = () => {
     <>
       <div className=" bg-blue-light relative w-full py-10 lg:pt-32 md:pt-28 pt-24 lg:px-32 md:px-16 px-3">
         <ToastContainer />
-        <h1 className="text-3xl text-center">Complete your UMKM profile</h1>
+        <h1 className="text-3xl text-center text-purple-light">
+          Complete your UMKM profile
+        </h1>
         <br />
         <DialogueCard>
           <h2>Store Name</h2>

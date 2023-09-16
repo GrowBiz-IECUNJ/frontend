@@ -1,13 +1,13 @@
-import React from "react";
-import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
-import { routes } from "./constant";
-import { useRouter } from "next/router";
-import { useAuthContext } from "src/components/contexts/AuthContext";
-import { IAuthContext } from "src/components/contexts/AuthContext/interface";
-import Link from "next/link";
+import React from 'react'
+import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react'
+import { routes } from './constant'
+import { useRouter } from 'next/router'
+import { useAuthContext } from 'src/components/contexts/AuthContext'
+import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
+import Link from 'next/link'
 export const NavBar: React.FC = () => {
-  const router = useRouter();
-  const { user }: IAuthContext = useAuthContext();
+  const router = useRouter()
+  const { user }: IAuthContext = useAuthContext()
 
   return (
     <>
@@ -33,11 +33,11 @@ export const NavBar: React.FC = () => {
                 className="text-xs sm:text-sm font-bold"
                 label={<div>{user.name}</div>}
                 outline
-                color={"light"}
+                color={'light'}
                 // size={"small"}
               >
                 <Dropdown.Item>
-                  <Link href="/profile">Profile</Link>
+                  <Link href="/UMKM">Profile</Link>
                 </Dropdown.Item>
                 <Dropdown.Item>
                   <Link href="/auth/logout" className=" text-red-500">
@@ -49,7 +49,7 @@ export const NavBar: React.FC = () => {
           ) : (
             <Button
               className="bg-indigo-500"
-              onClick={(e) => router.push("/auth/login")}
+              onClick={(e) => router.push('/auth/login')}
             >
               Login
             </Button>
@@ -80,5 +80,5 @@ export const NavBar: React.FC = () => {
         </Navbar.Collapse>
       </Navbar>
     </>
-  );
-};
+  )
+}

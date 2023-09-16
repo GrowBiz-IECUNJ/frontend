@@ -9,6 +9,7 @@ import { IAuthContext } from 'src/components/contexts/AuthContext/interface'
 import { useAuthContext } from 'src/components/contexts/AuthContext'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { ALink } from '@elements'
 
 export const ProductModule: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined)
@@ -66,7 +67,116 @@ export const ProductModule: React.FC = () => {
             <Spinner />
           )}
         </div>
+
+        <h1 className="py-12 text-display-medium text-purple-light text-center">
+          Testimoni
+        </h1>
+
+        <div className="grid grid-cols-1 justify-center items-center bg-slate-50 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-1 gap-y-8">
+          <div
+            className={`
+         
+        relative bg-white  drop-shadow-md w-[250px] mx-auto rounded-2xl 
+        transform hover:-translate-y-[0.5rem] hover:shadow-xl cursor-pointer
+        `}
+          >
+            <Image
+              src="/assets/images/risaa.jpg"
+              alt="foto"
+              width={500}
+              height={500}
+              className="object-cover w-[250px] h-[200px] rounded-t-2xl"
+            />
+            <div className="flex flex-col gap-x-6 px-6 pt-6">
+              <h1 className="text-title-large text-center">Risa Lestari</h1>
+
+              <p className="mt-3 mb-6 text-center">
+                "GrowBiz telah menjadi mitra bisnis yang tak ternilai bagi saya.
+                Dengan akses ke berbagai alat, pelatihan, dan komunitas
+                pengusaha yang luar biasa, saya telah berhasil meningkatkan
+                penjualan bisnis saya secara signifikan. Terima kasih GrowBiz!"
+              </p>
+            </div>
+          </div>
+
+          <div
+            className={`
+         
+        relative bg-white  drop-shadow-md w-[250px] mx-auto rounded-2xl 
+        transform hover:-translate-y-[0.5rem] hover:shadow-xl cursor-pointer
+        `}
+          >
+            <Image
+              src="/assets/images/angga.png"
+              alt="foto"
+              width={500}
+              height={500}
+              className="object-cover w-[250px] h-[200px] rounded-t-2xl"
+            />
+            <div className="flex flex-col gap-x-6 px-6 pt-6">
+              <h1 className="text-title-large text-center">
+                Nayyara Airlangga
+              </h1>
+              <p className="mt-3 mb-6 text-center">
+                "Saya awalnya kesulitan mengelola keuangan bisnis saya, tetapi
+                GrowBiz telah membantu saya dalam mengotomatisasi proses
+                keuangan dan mengurangi risiko. Ini sangat membantu saya fokus
+                pada pertumbuhan bisnis."
+              </p>
+            </div>
+          </div>
+
+          <div
+            className={`
+         
+        relative bg-white  drop-shadow-md w-[250px] mx-auto rounded-2xl 
+        transform hover:-translate-y-[0.5rem] hover:shadow-xl cursor-pointer
+        `}
+          >
+            <Image
+              src="/assets/images/ramanti.png"
+              alt="foto"
+              width={500}
+              height={500}
+              className="object-cover w-[250px] h-[200px] rounded-t-2xl"
+            />
+            <div className="flex flex-col gap-x-6 px-6 pt-6">
+              <h1 className="text-title-large text-center">Ramanti Prajna</h1>
+              <p className="mt-3 mb-6 text-center">
+                "Saya telah mengikuti beberapa kursus online di GrowBiz dan ini
+                benar-benar memperkaya pengetahuan saya tentang manajemen
+                bisnis. Sumber daya pelatihan mereka sangat berkualitas."
+              </p>
+            </div>
+          </div>
+
+          <div
+            className={`
+         
+        relative bg-white  drop-shadow-md w-[250px] mx-auto rounded-2xl 
+        transform hover:-translate-y-[0.5rem] hover:shadow-xl cursor-pointer
+        `}
+          >
+            <Image
+              src="/assets/images/john.jpeg"
+              alt="foto"
+              width={500}
+              height={500}
+              className="object-cover w-[250px] h-[200px] rounded-t-2xl"
+            />
+            <div className="flex flex-col gap-x-6 px-6 pt-6">
+              <h1 className="text-title-large text-center">John Doe</h1>
+              <p className="mt-3 mb-6 text-center">
+                "GrowBiz memberikan saya kesempatan untuk terhubung dengan
+                investor dan mendapatkan modal yang saya butuhkan untuk
+                mengembangkan bisnis saya. Saya sangat berterima kasih atas
+                dukungan mereka."
+              </p>
+            </div>
+          </div>
+        </div>
       </main>
+
       {/* <CartFooter router={router.isReady} /> */}
     </>
   )
