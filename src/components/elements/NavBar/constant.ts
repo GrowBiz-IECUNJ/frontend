@@ -20,7 +20,7 @@ export const routes = [
   },
   {
     path: '/Forum',
-    name: 'MSMES Forum',
+    name: 'Forum UMKM',
     icon: ChatBubbleLeftRightIcon,
   },
   {
