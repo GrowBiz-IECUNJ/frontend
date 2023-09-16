@@ -7,7 +7,7 @@ const AxiosContext = createContext({})
 export const useAxiosContext = () => useContext(AxiosContext)
 
 export const AxiosProvider: React.FC<IContextWithChildren> = ({ children }) => {
-  axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL
+  axios.defaults.baseURL = 'https://growbiz-api.fly.dev'
   // axios.defaults.headers['Content-Type'] = 'application/json'
 
   return <AxiosContext.Provider value={{}}>{children}</AxiosContext.Provider>
