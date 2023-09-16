@@ -582,9 +582,9 @@ export const ForumModule: React.FC = () => {
               type="submit"
               className="inline-flex items-center px-3
                py-2.5 text-sm font-medium text-center text-white bg-purple-light rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-              // disabled={!jwt}
+              disabled={!jwt}
             >
-              Publish post
+              {jwt ? 'Publish Post' : 'Login dulu!'}
             </Button>
           </form>
 
@@ -664,13 +664,13 @@ export const ForumModule: React.FC = () => {
                             UMKM
                           </span>
                           <div className="flex mt-4 space-x-3 md:mt-6">
-                            <a
-                              href="#"
+                            <button
+                              disabled={!jwt}
                               onClick={() => toast.success('Berhasil Connect')}
                               className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-purple-light hover:text-purple-lightest bg-purple-lightest rounded-lg hover:bg-purple-light focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
-                              Connect
-                            </a>
+                              {jwt ? 'Connect' : 'Login dulu!'}
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -708,7 +708,7 @@ export const ForumModule: React.FC = () => {
                         <div className="flex w-full lg:justify-start justify-center">
                           <Button
                             className="bg-purple-light hover:bg-purple-lightest hover:text-purple-light"
-                            //   disabled={!jwt}
+                            disabled={!jwt}
                             onClick={() => handleShowSection(forum.id)}
                           >
                             <span className="stroke-current">
@@ -718,7 +718,7 @@ export const ForumModule: React.FC = () => {
                                 className="h-5 w-5 mr-2"
                               />
                             </span>
-                            Reply
+                            {jwt ? 'Reply' : 'Login dulu!'}
                           </Button>
                         </div>
 
@@ -747,16 +747,6 @@ export const ForumModule: React.FC = () => {
                               <Button className="bg-purple-light" type="submit">
                                 Submit
                               </Button>
-                              {/* <div>
-                          <textarea
-                            className="bg-blue-light"
-                            id="content"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            required
-                          ></textarea>
-                        </div>
-                        <button type="submit">Submit</button> */}
                             </form>
                           </>
                         ) : (
@@ -818,108 +808,6 @@ export const ForumModule: React.FC = () => {
                   </div>
                 </>
               ))}
-
-            {/* {forums &&
-            forums.map((forum) => (
-              <>
-                <div
-                  key={forum.id}
-                  className="flex w-full mx-auto bg-white rounded-xl shadow-lg  "
-                >
-                  <div className="text-center space-y-2 sm:text-left flex">
-                    <div className="space-y-0.5 p-5">
-                      <p className="text-lg text-black">{forum.title}</p>
-                      <h1 className="pt-2 text-title-small">Description</h1>
-                      <p className="text-slate-500 font-medium">
-                        {forum.content}
-                      </p>
-                      <p className="text-title-small pt-5">
-                        Created at {forum.created_at.substring(0, 10)}
-                      </p>
-                      <div className="flex w-full lg:justify-start justify-center">
-                        <p>{forum.likes_count}</p>
-                        <button
-                          onClick={() => handleLikeFeatureFunction(forum.id)}
-                          className={`flex items-center justify-end space-x-2 transition-all duration-300 ease-in-out`}
-                        >
-                          <span className="stroke-current flex justify-center items-center mr-2">
-                            <HeartIcon
-                              fill="none"
-                              stroke="primary"
-                              className="h-5 w-5"
-                            />
-                            {forum.total_likes}
-                          </span>
-                          Like
-                        </button>
-                      </div>
-                      <div className="flex w-full lg:justify-start justify-center">
-                        <Button
-                          className="bg-purple-light"
-                          //   disabled={!jwt}
-                          onClick={() => handleShowSection(forum.id)}
-                        >
-                          <span className="stroke-current">
-                            <ChatBubbleBottomCenterTextIcon
-                              fill="none"
-                              stroke="primary"
-                              className="h-5 w-5 mr-2"
-                            />
-                          </span>
-                          Reply
-                        </Button>
-                      </div>
-
-                      {forum.id === idForum && showSection ? (
-                        <>
-                          <form
-                            onSubmit={(e) =>
-                              handleReplyFeatureFunction(e, forum.id)
-                            }
-                          >
-                            <div>
-                              <textarea
-                                className="bg-blue-light"
-                                id="content"
-                                value={content}
-                                onChange={(e) => setContent(e.target.value)}
-                                required
-                              ></textarea>
-                            </div>
-                            <button type="submit">Submit</button>
-                          </form>
-                        </>
-                      ) : (
-                        <></>
-                      )}
-
-                      {forum?.replies &&
-                        forum?.replies?.map((reply) => (
-                          <>
-                            <p>{reply.content}</p>
-                            <p className="text-[10px]">
-                              {new Date(
-                                reply?.created_at || ""
-                              ).toLocaleDateString("en-US", {
-                                month: "long",
-                                day: "numeric",
-                                year: "numeric",
-                              })}{" "}
-                              {new Date(
-                                reply?.created_at || ""
-                              ).toLocaleTimeString("en-US", {
-                                hour: "numeric",
-                                minute: "numeric",
-                                hour12: true,
-                              })}
-                            </p>
-                          </>
-                        ))}
-                    </div>
-                  </div>
-                </div>
-              </>
-            ))} */}
           </div>
         </main>
       </div>

@@ -142,7 +142,7 @@ export const VendorModule: React.FC = () => {
                 onClick={() => handleCreateVendor()}
                 // onClick={(e) => router.push('/auth/login')}
               >
-                Create New Vendor
+                {jwt ? 'Create New Vendor' : 'Login dulu!'}
               </Button>
             </DialogueCard>
           </div>
@@ -188,7 +188,7 @@ export const VendorModule: React.FC = () => {
                     onClick={() => handleDeleteVendor(vendor.id)}
                     // onClick={(e) => router.push('/auth/login')}
                   >
-                    Delete
+                    {jwt ? 'Delete' : 'Login dulu!'}
                   </Button>
                 </DialogueCard>
               </>

@@ -212,8 +212,7 @@ export const UMKMModule: React.FC = () => {
               onClick={() => UMKMProfileSubmit()}
               className=" bg-indigo-500"
             >
-              Submit
-              {/* {isLoading ? <Spinner /> : 'Submit'} */}
+              {jwt ? 'Submit' : 'Login dulu!'}
             </Button>
           </div>
         </DialogueCard>

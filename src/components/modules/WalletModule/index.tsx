@@ -123,6 +123,7 @@ export const WalletModule: React.FC = () => {
               <br />
               <div className="relative inline-block text-left">
                 <button
+                  disabled={!jwt}
                   onClick={() => setOpen(!open)}
                   className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline hover:bg-blue-600"
                 >
@@ -183,7 +184,7 @@ export const WalletModule: React.FC = () => {
                 onClick={() => handleCreateWallet()}
                 // onClick={(e) => router.push('/auth/login')}
               >
-                Create New Transaction
+                {jwt ? 'Create New Transaction' : 'Login dulu!'}
               </Button>
             </DialogueCard>
           </div>
@@ -230,7 +231,7 @@ export const WalletModule: React.FC = () => {
                     onClick={() => handleDeleteWallet(wallet.id)}
                     // onClick={(e) => router.push('/auth/login')}
                   >
-                    Delete
+                    {jwt ? 'Delete' : 'Login dulu!'}
                   </Button>
                 </DialogueCard>
               </>

@@ -61,6 +61,7 @@ export const WorkshopCard: React.FC<Props> = ({
           <Button
             className="bg-indigo-500"
             href={workshop.registration}
+            disabled={!jwt}
             // disabled={!jwt || workshop.stock == 0}
           >
             {jwt ? 'Join' : 'Login dulu!'}
