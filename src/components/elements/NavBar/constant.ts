@@ -7,7 +7,8 @@ import {
   UserIcon,
   TruckIcon,
   IdentificationIcon,
-  QuestionMarkCircleIcon
+  QuestionMarkCircleIcon,
+  
   
 } from '@heroicons/react/24/outline'
 
@@ -16,11 +17,6 @@ export const routes = [
     path: '/',
     name: 'Home',
     icon: HomeIcon,
-  },
-  {
-    path: '/Incubation',
-    name: 'Find Investor',
-    icon: WalletIcon,
   },
   {
     path: '/Forum',
@@ -37,15 +33,15 @@ export const routes = [
     name: 'Workshops',
     icon: GlobeAltIcon,
   },
-  {
-    path: '/UMKM',
-    name: 'UMKM',
-    icon: UserIcon,
-  },
+  // {
+  //   path: '/UMKM',
+  //   name: 'UMKM',
+  //   icon: UserIcon,
+  // },
   {
     path: '/Wallet',
     name: 'Wallet',
-    icon: TruckIcon,
+    icon: WalletIcon,
   },
   {
     path: '/Products',
@@ -57,11 +53,7 @@ export const routes = [
     name: 'Vendor',
     icon: IdentificationIcon,
   },
-  {
-    path: '/FAQ',
-    name: 'FAQ',
-    icon: QuestionMarkCircleIcon,
-  },{
+ {
     path: '/About',
     name: 'About',
     icon: QuestionMarkCircleIcon,

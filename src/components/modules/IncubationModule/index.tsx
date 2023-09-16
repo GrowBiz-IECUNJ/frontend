@@ -34,7 +34,7 @@ export const IncubationModule: React.FC = () => {
 
   return (
     <>
-      <main className="relative w-full min-h-screen 2xl:px-[20vw] lg:py-20 md:py-20 py-24 lg:px-32 md:px-16 px-3 text-sm bg-slate-50">
+      <main className="relative bg-white w-full min-h-screen 2xl:px-[20vw] lg:py-20 md:py-20 py-24 lg:px-32 md:px-16 px-3 text-sm ">
         <ToastContainer />
         <h1 className="py-12 text-display-medium text-purple-light text-center">
           Daftar Inkubasi
@@ -57,7 +57,7 @@ export const IncubationModule: React.FC = () => {
             />
           </Button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-1 gap-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-x-1 gap-y-8">
           {incubations ? (
             incubations?.map((incubation: Incubation, key: number) => (
               <IncubationCard

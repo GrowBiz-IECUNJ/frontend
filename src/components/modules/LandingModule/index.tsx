@@ -3,6 +3,7 @@ import Hero from './Hero'
 import About from './About'
 import Service from './Services'
 import { FaqModule } from '@modules'
+import { IncubationModule } from '../IncubationModule'
 
 export const LandingModule: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ export const LandingModule: React.FC = () => {
         <Hero />
         <About />
         <Service />
+        <IncubationModule />
         <FaqModule />
       </div>
     </>
