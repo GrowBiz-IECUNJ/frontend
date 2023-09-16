@@ -18,6 +18,12 @@ export default function Service() {
           pertumbuhan bisnis Anda, semuanya dalam satu platform yang mudah
           digunakan.
         </p>
+        <p className="my-5 text-center lg:text-left">
+          Alamat toko: Jalan Letjen South Parman 22, Dki Jakarta
+        </p>
+        <p className="my-5 text-center lg:text-left">
+          Alamat surel: growbiz@gmail.com
+        </p>
         <div className="flex flex-col justify-center items-center">
           <div className="flex my-5 gap-5">
             <div className="flex flex-col justify-center items-center">
