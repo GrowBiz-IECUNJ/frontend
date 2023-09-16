@@ -61,5 +61,9 @@ export const routes = [
     path: '/FAQ',
     name: 'FAQ',
     icon: QuestionMarkCircleIcon,
+  },{
+    path: '/About',
+    name: 'About',
+    icon: QuestionMarkCircleIcon,
   },
 ]

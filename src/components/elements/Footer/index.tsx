@@ -1,7 +1,7 @@
-import { Footer } from "flowbite-react";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import { Footer } from 'flowbite-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
 export const FooTer: React.FC = () => {
   return (
@@ -18,7 +18,10 @@ export const FooTer: React.FC = () => {
               <p className="text-neutral-800 text-sm font-productSans text-center mt-1">
                 © 2023 GrowBiz
               </p>
-              <Link href="#" className="my-6 mx-auto">
+              <Link
+                href="https://github.com/GrowBiz-IECUNJ"
+                className="my-6 mx-auto"
+              >
                 <Image
                   src="/assets/images/icons/github-lightblue.svg"
                   width={24}
@@ -53,5 +56,5 @@ export const FooTer: React.FC = () => {
         </div>
       </Footer>
     </>
-  );
-};
+  )
+}
