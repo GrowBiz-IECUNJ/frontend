@@ -143,7 +143,7 @@ export const ForumModule: React.FC = () => {
           <div className="flex lg:flex-row flex-col justify-center items-center">
             <div className="flex flex-col">
               <h1 className="text-grey-dark lg:text-display-medium text-display-small font-bold mr-3 md:my-0 my-auto">
-                GrowBiz is <p className="inline"></p>
+                GrowBiz Forums <p className="inline"></p>
               </h1>
 
               <p className="text-left lg:text-xl md:text-xl text-lg mt-5">
